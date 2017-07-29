@@ -1,0 +1,5 @@
+class <%= model.singularize.camelcase %>Presenter < ApplicationPresenter
+  def initialize(<%= model.singularize.underscore %>)
+    @<%= model.singularize.underscore %> = <%= model.singularize.underscore %>
+  end
+end

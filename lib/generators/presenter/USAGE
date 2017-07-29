@@ -1,0 +1,8 @@
+Description:
+    Creates a presenter based on a model name for you
+
+Example:
+    rails g presenter user
+
+    This will create:
+        app/presenters/user_presenter.rb
