@@ -1,0 +1,9 @@
+Description:
+    Creates the presenters folder & application_presenter.rb file for you
+
+Example:
+    rails g presenter:install
+
+    This will create:
+        app/presenters
+        app/presenters/application_presenter.rb
