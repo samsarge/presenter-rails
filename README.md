@@ -21,6 +21,16 @@ Or install it yourself as:
 $ gem install presenter-rails
 ```
 
+Add this line to the top of your application.rb
+```ruby
+require 'presenter'
+```
+
+Followed by this line inside class Application < Rails::Application
+```ruby
+config.autoload_paths << Rails.root.join('app/presenters')
+```
+
 ## Contributing
 Contribution directions go here.
 
