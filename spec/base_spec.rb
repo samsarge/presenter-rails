@@ -1,7 +1,7 @@
 require 'rails_helper'
 describe Presenter::Base do
   context 'all presenter models' do
-    User = Struct.new(:id, :first_name, :last_name)
+    User ||= Struct.new(:id, :first_name, :last_name)
     let(:user) { User.new(1, "Sam", "Sargent")}
     let(:presenter) { UserPresenter.new(user) }
 
