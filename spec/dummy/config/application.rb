@@ -11,7 +11,7 @@ require "action_cable/engine"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
-require "presenter/base"
+require "presenter"
 
 module Dummy
   class Application < Rails::Application

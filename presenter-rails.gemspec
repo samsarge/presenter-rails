@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Sam Sargent", "Finn Francis"]
   s.email       = ["samsarge@hotmail.co.uk", "finnfrancis123@gmail.com"]
   s.homepage    = ""
-  s.summary     = "Summary of Presenter::Base."
-  s.description = "Description of Presenter::Base."
+  s.summary     = "Summary of Presenter"
+  s.description = "Description of Presenter"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
