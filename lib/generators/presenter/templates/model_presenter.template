@@ -1,5 +1,16 @@
-class <%= model.singularize.camelcase %>Presenter < ApplicationPresenter
-  def initialize(<%= model.singularize.underscore %>)
-    @<%= model.singularize.underscore %> = <%= model.singularize.underscore %>
-  end
+class <%= "#{model.singularize.camelcase}Presenter" %> < ApplicationPresenter
+  <%- if options.doc? -%>
+    # To manually instantite your presenter: call <%= "#{model.singularize.camelcase}Presenter" %>.new
+    # and pass in an instance of <%= model.singularize.camelcase %>
+
+    # example:
+    # <%= model.singularize.underscore %> = <%= model.singularize.camelcase %>.first
+    # <%= "#{model.singularize.camelcase}Presenter" %>.new(<%= model.singularize.underscore %>)
+    # This will provide you with a method called #<%= model.singularize.underscore %> which will return <%= model.singularize.underscore %>
+    # Now you can reference your instance using #<%= model.singularize.underscore %>
+
+    # def id_to_string
+    #   <%= model.singularize.underscore %>.id.to_s
+    # end
+  <%- end -%>
 end
