@@ -60,7 +60,7 @@ class UserPresenter < ApplicationPresenter
 end
 ```
 
-Note: This automatically inherits a dynamic initialize method which sets an instance variable. You also inherit a helper method dynamically named after the model too. 
+Note: This automatically inherits a dynamic initialize method which sets an instance variable. You also inherit a helper method dynamically named after the model too.
 So you DO NOT have to define this yourself:
 ```ruby
 def initialize(user)
@@ -129,6 +129,12 @@ This allows access to
   # instead of
   user = User.first
   @user = UserPresenter.new(user)
+
+  # alternatively, pass in a collection to return an array of presenter objects
+  users = User.all        # an active record relation
+  @users = present(users)
+  users = User.all.to_a   # an array
+  @users = present(users)
 ```
 
 ### #model
