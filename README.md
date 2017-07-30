@@ -5,7 +5,7 @@
   With a naming convention based approach, easily define presenter classes to clean up
   your models and views, handling method delegation based on instance variable & file naming.
 
-  This should hopefully mean you can just use instances of a presenter in place of model instances
+  This should hopefully mean you can just use presenter objects in place of model objects
   throughout your app without effecting any behaviour - as you can still call your custom model
   methods and active record methods on the presenter objects.
 
