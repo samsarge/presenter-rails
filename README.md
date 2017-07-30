@@ -60,14 +60,16 @@ class UserPresenter < ApplicationPresenter
 end
 ```
 
-This automatically inherits a dynamic initialize method which sets an instance variable named after your model as shown below:
+Note: This automatically inherits a dynamic initialize method which sets an instance variable named after your model as shown below.
+      So you DO NOT have to define this yourself:
 ```ruby
 def initialize(user)
   @user = user
 end
 ```
-along with some error handling and some other code. You don't have to worry about this. Just remember you don't need to define
-an initialize method and if you do, remember to super or you will overwrite the default behaviour.
+This also comes with with some error handling and some other code. So you don't have to worry about this.
+I'm showing it just so you know what to expect if you try overwrite the method without super or if you wish to extend it
+then remember to super or you will overwrite the default behaviour.
 
 This means you can define methods in your presenter using the instance variable named after your model.
 Let's imagine our User model has a first_name and last_name field and we want to define #name. All we would have to do is:
