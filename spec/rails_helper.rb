@@ -7,13 +7,6 @@ require File.expand_path('../../lib/presenter', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 
-
-class UserPresenter < Presenter::Base
-  def initialize(user)
-    @user = user
-  end
-end
-
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|

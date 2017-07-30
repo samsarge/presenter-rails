@@ -1,5 +1,12 @@
-class <%= model.singularize.camelcase %>Presenter < ApplicationPresenter
-  def initialize(<%= model.singularize.underscore %>)
-    @<%= model.singularize.underscore %> = <%= model.singularize.underscore %>
-  end
+class <%= "#{model.singularize.camelcase}Presenter" %> < ApplicationPresenter
+  <%- if options.doc? -%>
+    # Don't worry about the initialize method, it's already handled for you.
+
+    # You can now pass in an instance of <%= model.singularize.camelcase %> when you initialize this presenter
+    # and access it with the helper method
+    # #<%= model.singularize.underscore %>
+    # instead of an instance variable when writing your methods
+
+    # Write methods for this presenter in here using the helper method
+  <%- end -%>
 end

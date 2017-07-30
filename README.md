@@ -55,20 +55,25 @@ $ rails g presenter User
 
 to create a presenter file for one of your models. This will inherit from ApplicationPresenter, example shown below:
 ```ruby
-app/presenters/user_presenter.rb
+# app/presenters/user_presenter.rb
 class UserPresenter < ApplicationPresenter
 end
 ```
 
-Note: This automatically inherits a dynamic initialize method which sets an instance variable named after your model as shown below.
-      So you DO NOT have to define this yourself:
+Note: This automatically inherits a dynamic initialize method which sets an instance variable. You also inherit a helper method dynamically named after the model too. 
+So you DO NOT have to define this yourself:
 ```ruby
 def initialize(user)
   @user = user
 end
+
+def user # Make sure you use the helper methods in your presenters in place of the instance variable.
+  @user
+end
 ```
-This also comes with with some error handling and some other code. So you don't have to worry about this.
-I'm showing it just so you know what to expect if you try overwrite the method without super or if you wish to extend it
+
+This also comes with with some error handling and some other code. So don't worry about this.
+I'm showing it just so you know what to expect if you try overwrite initialize or the helper without super. If you wish to extend it
 then remember to super or you will overwrite the default behaviour.
 
 This means you can define methods in your presenter using the instance variable named after your model.
@@ -76,7 +81,7 @@ Let's imagine our User model has a first_name and last_name field and we want to
 ```ruby
 class UserPresenter < ApplicationPresenter
   def name
-    "#{@user.first_name} #{@user.last_name}"
+    "#{user.first_name} #{user.last_name}"
   end
 end
 ```
@@ -111,6 +116,35 @@ This allows access to
 # returning something like 'Sam'
 # Note: This works with all ActiveRecord methods too, just as if it's an object of the ActiveRecord class User
 #       allowing access to even @user.update(first_name: 'Finn') on the presenter object
+```
+
+## Helper methods
+
+#present
+
+```ruby
+  user = User.first
+  @user = present(user) # returns a presenter object for that model, replacing need to initialize with #new
+
+  # instead of
+  user = User.first
+  @user = UserPresenter.new(user)
+```
+
+#instance variable getters
+
+For each presenter you create, a helper method is defined to get the model object being passed in. This replaces the need to throw around
+the instance variable. It's also faster as it allows the method delegation to not have to parse naming and fetch instance variables every time the inherited #method_missing is called.
+
+shown using a User model as example
+```ruby
+# app/presenters/user_presenter.rb
+class UserPresenter < ApplicationPresenter
+  # this has the method #user defined automatically to access the user object being passed in to the presenter
+  def name
+    "#{user.first_name} {user.last_name}"
+  end
+end
 ```
 
 ## License
