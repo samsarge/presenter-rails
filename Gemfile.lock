@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     presenter-rails (0.1.0)
-      rails (~> 5.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -130,8 +129,9 @@ PLATFORMS
 
 DEPENDENCIES
   presenter-rails!
+  rails (~> 5.0.2)
   rspec-rails
   sqlite3
 
 BUNDLED WITH
-   1.15.0
+   1.15.3
