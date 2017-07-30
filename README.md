@@ -120,7 +120,7 @@ This allows access to
 
 ## Helper methods
 
-#present
+### #present
 
 ```ruby
   user = User.first
@@ -131,7 +131,7 @@ This allows access to
   @user = UserPresenter.new(user)
 ```
 
-#instance variable getters
+### #model
 
 For each presenter you create, a helper method is defined to get the model object being passed in. This replaces the need to throw around
 the instance variable. It's also faster as it allows the method delegation to not have to parse naming and fetch instance variables every time the inherited #method_missing is called.
