@@ -62,7 +62,7 @@ end
 
 This automatically inherits a dynamic initialize method which sets an instance variable named after your model as shown below:
 ```ruby
-def initialize
+def initialize(user)
   @user = user
 end
 ```
@@ -107,8 +107,8 @@ This allows access to
 @user.first_name
 # which would delegate the method back to the user model being passed into the present helper
 # returning something like 'Sam'
-# Note: This works all ActiveRecord methods too, just as if it's an object of the ActiveRecord class User
-# allowing access to even @user.update(first_name: 'Finn')
+# Note: This works with all ActiveRecord methods too, just as if it's an object of the ActiveRecord class User
+#       allowing access to even @user.update(first_name: 'Finn') on the presenter object
 ```
 
 ## License
