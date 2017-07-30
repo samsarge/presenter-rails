@@ -9,8 +9,16 @@ describe Presenter::Helper do
   let(:user) { User.new first_name: 'Finn', last_name: 'Francis' }
 
   describe '#present' do
-    it 'should return the relevant presenter object for the model object passed in' do
-      expect(test.present(user)).to be_a UserPresenter
+    context 'passing in a single model object' do
+      it 'should return the relevant presenter object for the model object passed in' do
+        expect(test.present(user)).to be_a UserPresenter
+      end
+    end
+
+    context 'passing in a collection' do
+      it 'should return an array of relevant presenter objects for each model object in the collection' do
+        expect(test.present(User.all)).to all be_a(UserPresenter)
+      end
     end
   end
 
