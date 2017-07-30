@@ -16,39 +16,37 @@
   convention you see throughout the rest of your Rails app.
 
 ## Installation
-Add this line to your application's Gemfile:
-
+Add this line to your application's Gemfile and bundle:
 ```ruby
 gem 'presenter-rails'
 ```
-
-And then execute:
 ```bash
 $ bundle
 ```
-
-Add this line to the top of your application.rb
-```ruby
-require 'presenter'
-```
-
-Followed by this line inside class Application < Rails::Application
-```ruby
-config.autoload_paths << Rails.root.join('app/presenters')
-```
-
-Finally, run
+Run the install generator
 ```bash
 $ rails g presenter:install
 ```
-to create the folder along with the ApplicationPresenter file
+Add this line to the top of your application.rb
+```ruby
+# config/application.rb
+require 'presenter'
+```
+Followed by this line inside the Application class
+```ruby
+# config/application.rb
+module YourAppName
+  class Application < Rails::Application
+    config.autoload_paths << Rails.root.join('app/presenters')
+  end
+end
+```
 
 ## Usage
 
-These instructions will user a 'User' model for example purposes. Just switch out User for your own model names
+These instructions will use a 'User' model for example purposes. Just switch out User for your own model names
 
-After you run the install generator
-Use
+After you run the install generator, run
 ```bash
 $ rails g presenter User
 ```
@@ -95,7 +93,7 @@ class UserPresenter < ApplicationPresenter
 end
 ```
 
-now you can initialize a presenter. There is 2 methods to this, either directly initialize the object as usual with:
+now you can initialize a presenter. There are 2 methods for this, either directly initialize the object as usual with:
 ```ruby
 @user = UserPresenter.new(user)
 ```
@@ -103,6 +101,7 @@ or use our built in helper to accomplish the same thing:
 ```ruby
 @user = present(user)
 ```
+(More on this below)
 
 Example provided shows how it would be used in a controller:
 ```ruby
@@ -131,6 +130,7 @@ This allows access to
 
 ### #present
 
+  #present is a method accessible in controllers and views for initializing new presenter objects
 ```ruby
   user = User.first
   @user = present(user) # returns a presenter object for that model, replacing need to initialize with #new
@@ -146,7 +146,7 @@ This allows access to
   @users = present(users)
 ```
 
-### #model
+### #instance getter
 
 For each presenter you create, a helper method is defined to get the model object being passed in. This replaces the need to throw around
 the instance variable. It's also faster as it allows the method delegation to not have to parse naming and fetch instance variables every time the inherited #method_missing is called.
