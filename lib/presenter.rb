@@ -1,2 +1,5 @@
+require 'presenter/naming'
 require 'presenter/base'
+require 'presenter/helper'
+require 'presenter/controller'
 require 'presenter/version'

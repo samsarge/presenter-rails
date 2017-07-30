@@ -1,5 +1,7 @@
 module Presenter
   class Base
+    include Presenter::Naming
+
     def initialize(model)
       @model = model
       generate_model_instance_getter
@@ -7,7 +9,7 @@ module Presenter
 
     protected
     def generate_model_instance_getter
-      define_singleton_method model_name do
+      define_singleton_method model_object_name_from_presenter(@model) do
         @model
       end
     end
@@ -18,10 +20,6 @@ module Presenter
 
     def respond_to_missing?(method, include_all = false)
       @model.respond_to?(method, include_all)
-    end
-
-    def model_name
-      self.class.to_s.underscore.sub('_presenter', '')
     end
   end
 end
