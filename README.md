@@ -76,6 +76,15 @@ This also comes with with some error handling and some other code. So don't worr
 I'm showing it just so you know what to expect if you try overwrite initialize or the helper without super. If you wish to extend it
 then remember to super or you will overwrite the default behaviour.
 
+If you do wish to extend the initialize method / change the instance variable name, call super first. Next, define an instance variable and assign it to the model object using the helper method (named after the model name).
+```ruby
+def initialize(user)
+  super
+  # assigning your variable to the user method gives it access to the inherited code.
+  @another_variable_name = self.user
+end
+```
+
 This means you can define methods in your presenter using the instance variable named after your model.
 Let's imagine our User model has a first_name and last_name field and we want to define #name. All we would have to do is:
 ```ruby
