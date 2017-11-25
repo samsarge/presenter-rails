@@ -59,7 +59,7 @@ end
 ```
 
 Note: This provides you with a getter method: #subject.
-You can use #subject to acces the model you passed in e.g.
+You can use #subject to acces the object you passed in when initializing the presenter. See below on how to do this.
 ```ruby
 # app/presenters/user_presenter
 def full_name
@@ -72,11 +72,13 @@ If you do wish to override the initialize method, call super as demonstrated bel
 def initialize(user, middle_name)
   @user = user
   @user.update middle_name: middle_name
+
+  # Make sure to pass your object to super.
   super user
 end
 ```
-Make sure to pass your model to super.
 
+# Initializing the presenter
 Now you can initialize a presenter. There are 2 methods for this, either directly initialize the object as usual with:
 ```ruby
 @user = UserPresenter.new(user)
