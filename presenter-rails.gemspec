@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Sam Sargent", "Finn Francis"]
   s.email       = ["samsarge@hotmail.co.uk", "finnfrancis123@gmail.com"]
   s.homepage    = "https://github.com/samsarge/presenter-rails"
-  s.summary     = "Easily implement the presenter design pattern in rails projects."
-  s.description = "Keep code neat and abstract view & presenter logic. Adding a simple separation of concerns when creating your models with an easy API."
+  s.summary     = "Presenter design pattern for Rails."
+  s.description = "Presenter design pattern for Rails."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
