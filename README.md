@@ -51,7 +51,7 @@ After you run the install generator, run
 $ rails g presenter User
 ```
 
-to create a presenter file for one of your models. This will inherit from ApplicationPresenter, example shown below:
+this will create a presenter file for one of your models and will inherit from ApplicationPresenter, example shown below:
 ```ruby
 # app/presenters/user_presenter.rb
 class UserPresenter < ApplicationPresenter
@@ -61,7 +61,7 @@ end
 Note: This provides you with a getter method: #subject.
 You can use #subject to acces the object you passed in when initializing the presenter. See below on how to do this.
 ```ruby
-# app/presenters/user_presenter
+# app/presenters/user_presenter.rb
 def full_name
   subject.first_name + ' ' + subject.last_name
 end
@@ -78,7 +78,7 @@ def initialize(user, middle_name)
 end
 ```
 
-# Initializing the presenter
+## Initializing the presenter
 Now you can initialize a presenter. There are 2 methods for this, either directly initialize the object as usual with:
 ```ruby
 @user = UserPresenter.new(user)
