@@ -67,7 +67,7 @@ def full_name
 end
 ```
 
-If you do wish to extend the initialize method, call super as demonstrated below:
+If you do wish to override the initialize method, call super as demonstrated below:
 ```ruby
 def initialize(user, middle_name)
   @user = user
