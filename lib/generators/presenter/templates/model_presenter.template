@@ -3,9 +3,7 @@ class <%= "#{model.singularize.camelcase}Presenter" %> < ApplicationPresenter
     # Don't worry about the initialize method, it's already handled for you.
 
     # You can now pass in an instance of <%= model.singularize.camelcase %> when you initialize this presenter
-    # and access it with the helper method
-    # #<%= model.singularize.underscore %>
-    # instead of an instance variable when writing your methods
+    # and access it with the helper method: subject
 
     # Write methods for this presenter in here using the helper method
   <%- end -%>

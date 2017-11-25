@@ -20,8 +20,8 @@ describe Presenter::Base do
 
     describe '#generate_model_instance_getter' do
       it 'should create a getter method for the model instance with the same name as the model you pass in' do
-        expect(presenter).to respond_to :user
-        expect(presenter.user).to eq user
+        expect(presenter).to respond_to :subject
+        expect(presenter.subject).to eq user
       end
     end
   end
