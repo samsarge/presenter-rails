@@ -58,48 +58,34 @@ class UserPresenter < ApplicationPresenter
 end
 ```
 
-Note: This automatically inherits a dynamic initialize method which sets an instance variable. You also inherit a helper method dynamically named after the model too.
-So you DO NOT have to define this yourself:
+Note: This provides you with a getter method: #subject.
+You can use #subject to acces the model you passed in e.g.
 ```ruby
-def initialize(user)
+# app/presenters/user_presenter
+def full_name
+  subject.first_name + ' ' + subject.last_name
+end
+```
+
+If you do wish to extend the initialize method, call super as demonstrated below:
+```ruby
+def initialize(user, middle_name)
   @user = user
-end
-
-def user # Make sure you use the helper methods in your presenters in place of the instance variable.
-  @user
+  @user.update middle_name: middle_name
+  super user
 end
 ```
+Make sure to pass your model to super.
 
-This also comes with with some error handling and some other code. So don't worry about this.
-I'm showing it just so you know what to expect if you try overwrite initialize or the helper without super. If you wish to extend it
-then remember to super or you will overwrite the default behaviour.
-
-If you do wish to extend the initialize method / change the instance variable name, call super first. Next, define an instance variable and assign it to the model object using the helper method (named after the model name).
-```ruby
-def initialize(user)
-  super
-  # assigning your variable to the user method gives it access to the inherited code.
-  @another_variable_name = self.user
-end
-```
-
-This means you can define methods in your presenter using the instance variable named after your model.
-Let's imagine our User model has a first_name and last_name field and we want to define #name. All we would have to do is:
-```ruby
-class UserPresenter < ApplicationPresenter
-  def name
-    "#{user.first_name} #{user.last_name}"
-  end
-end
-```
-
-now you can initialize a presenter. There are 2 methods for this, either directly initialize the object as usual with:
+Now you can initialize a presenter. There are 2 methods for this, either directly initialize the object as usual with:
 ```ruby
 @user = UserPresenter.new(user)
 ```
 or use our built in helper to accomplish the same thing:
 ```ruby
+# The present helper will work with a single model or a collection
 @user = present(user)
+@users = present(User.all)
 ```
 (More on this below)
 
@@ -114,7 +100,7 @@ end
 ```
 
 Now the user instance variable has access to all methods belonging to it's presenter and the model being passed in.
-This allows access to
+This allows access to:
 ```ruby
 @user.name
 # which returns first name and last name like 'Sam Sargent'
@@ -144,22 +130,6 @@ This allows access to
   @users = present(users)
   users = User.all.to_a   # an array
   @users = present(users)
-```
-
-### #instance getter
-
-For each presenter you create, a helper method is defined to get the model object being passed in. This replaces the need to throw around
-the instance variable. It's also faster as it allows the method delegation to not have to parse naming and fetch instance variables every time the inherited #method_missing is called.
-
-shown using a User model as example
-```ruby
-# app/presenters/user_presenter.rb
-class UserPresenter < ApplicationPresenter
-  # this has the method #user defined automatically to access the user object being passed in to the presenter
-  def name
-    "#{user.first_name} {user.last_name}"
-  end
-end
 ```
 
 ## License
