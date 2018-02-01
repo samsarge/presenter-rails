@@ -133,6 +133,7 @@ This allows access to:
   users = User.all.to_a   # an array
   @users = present(users)
 ```
+For more detailed examples visit [here](https://github.com/samsarge/presenter-rails/wiki/%23present-method)
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
