@@ -7,3 +7,9 @@ Example:
     This will create:
         app/presenters
         app/presenters/application_presenter.rb
+
+    This will inject:
+        require 'presenter'
+        config.autoload_paths << Rails.root.join('app/presenters')
+    Into config/application.rb
+
