@@ -3,7 +3,7 @@ require 'rails_helper'
 # Use this spec to test the application of rails presenter
 describe UserPresenter do
   let(:user) { User.create(first_name: "Sam", last_name: "Sargent")}
-  let(:presenter) { UserPresenter.new(user, 'Finn') }
+  let(:presenter) { TestUserPresenter.new(user, 'Finn') }
 
   describe 'overriding the initialize' do
     it 'should allow the initialize to be overridden' do
@@ -18,7 +18,7 @@ describe UserPresenter do
   end
 end
 
-class UserPresenter < ApplicationPresenter
+class TestUserPresenter < ApplicationPresenter
   attr_reader :user
 
   def initialize(user, first_name)
