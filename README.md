@@ -27,12 +27,12 @@ Run the install generator
 ```bash
 $ rails g presenter:install
 ```
-Add this line to the top of your application.rb
+It will add this line to your application.rb
 ```ruby
 # config/application.rb
 require 'presenter'
 ```
-Followed by this line inside the Application class
+And this line inside the Application class
 ```ruby
 # config/application.rb
 module YourAppName
