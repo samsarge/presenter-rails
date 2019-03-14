@@ -28,8 +28,7 @@ describe Presenter::Helper do
         let(:failed_presenter) { test.present admin }
 
         it 'should allow a user to pass in extra arguments to send to the presenter' do
-          expect { admin_presenter }.to_not raise_error Presenter::Error
-          expect { admin_presenter }.to_not raise_error ArgumentError
+          expect { admin_presenter }.to_not raise_error
           expect(admin_presenter.subject).to eq admin
           expect(admin_presenter.age).to eq 30
         end
@@ -47,8 +46,7 @@ describe Presenter::Helper do
         end
 
         it 'should allow a user to pass in a block to set arguments in a block' do
-          expect { admin_presenter }.to_not raise_error Presenter::Error
-          expect { admin_presenter }.to_not raise_error ArgumentError
+          expect { admin_presenter }.to_not raise_error
           expect(admin_presenter.first.age).to eql 3
         end
 
@@ -58,8 +56,7 @@ describe Presenter::Helper do
           context 'argument provided' do
             let(:args) { [30] }
             it 'should not error' do
-              expect { admin_presenter }.to_not raise_error Presenter::Error
-              expect { admin_presenter }.to_not raise_error ArgumentError
+              expect { admin_presenter }.to_not raise_error
               expect(admin_presenter.first.subject).to eq admin
               expect(admin_presenter.first.age).to eq 30
             end
